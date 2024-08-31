@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  ms_user_database:
+    container_name: ms_user_postgres
+    image: postgres
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=ms-user
+  ms_email_database:
+    container_name: ms_email_postgres
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=ms-email
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: ms_user_rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: user
+      RABBITMQ_DEFAULT_PASS: password
